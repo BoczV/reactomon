@@ -1,24 +1,64 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { Component } from "react";
+import axios from "axios";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Could I save it?</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.css";
+import PokemonList from "./components/PokemonList";
+import TypeList from "./components/TypeList";
+import Navbar from "./components/Navbar";
+
+class App extends Component {
+  state = {
+    pokemons: [],
+    types: [],
+  };
+
+  componentDidMount() {
+    axios
+      .get("https://pokeapi.co/api/v2/pokemon")
+      .then((res) => this.setState({ pokemons: res.data.results }));
+
+    axios
+      .get("https://pokeapi.co/api/v2/type")
+      .then((res) => this.setState({ types: res.data.results }));
+  }
+
+  render() {
+    console.log(this.state.pokemons);
+    return (
+      <Router>
+        <div className="App">
+          <Route
+            path="/"
+            render={(props) => (
+              <React.Fragment>
+                <h1>Reactomon</h1>
+                <Navbar />
+              </React.Fragment>
+            )}
+          />
+
+          <Route
+            path="/pokemons"
+            render={(props) => (
+              <React.Fragment>
+                <PokemonList pokemons={this.state.pokemons} />
+              </React.Fragment>
+            )}
+          />
+
+          <Route
+            path="/types"
+            render={(props) => (
+              <React.Fragment>
+                <TypeList types={this.state.types} />
+              </React.Fragment>
+            )}
+          />
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
