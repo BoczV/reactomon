@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import React, { useState } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -24,7 +25,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.pokemons);
     return (
       <Router>
         <div className="App">
@@ -55,6 +55,15 @@ class App extends Component {
               </React.Fragment>
             )}
           />
+
+          {/* <Route
+            path="/pokemon/"
+            render={(props) => (
+              <React.Fragment>
+                <div></div>
+              </React.Fragment>
+            )}
+          /> */}
         </div>
       </Router>
     );
