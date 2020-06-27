@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-// import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -9,57 +8,57 @@ import PokemonList from "./components/PokemonList";
 import TypeList from "./components/TypeList";
 import Navbar from "./components/Navbar";
 
-class App extends Component {
-  state = {
-    pokemons: [],
-    types: [],
-  };
+const App = () => {
+  const [pokemons, setPokemons] = useState([]);
+  const [types, setTypes] = useState([]);
 
-  componentDidMount() {
+  useEffect(() => {
+    console.log("useEffect runs");
     axios
       .get("https://pokeapi.co/api/v2/pokemon")
-      .then((res) => this.setState({ pokemons: res.data.results }));
-
+      .then((res) => setPokemons(res.data));
     axios
       .get("https://pokeapi.co/api/v2/type")
-      .then((res) => this.setState({ types: res.data.results }));
-  }
+      .then((res) => setTypes(res.data));
 
-  render() {
-    return (
-      <Router>
-        <div className="App">
-          <Route
-            path="/"
-            render={(props) => (
-              <React.Fragment>
-                <h1>Reactomon</h1>
-                <Navbar />
-              </React.Fragment>
-            )}
-          />
+    // fetch("https://pokeapi.co/api/v2/pokemon").then((res) => setPokemons(res));
 
-          <Route
-            path="/pokemons"
-            render={(props) => (
-              <React.Fragment>
-                <PokemonList pokemons={this.state.pokemons} />
-              </React.Fragment>
-            )}
-          />
+    // fetch("https://pokeapi.co/api/v2/type").then((res) => setTypes(res));
+  }, []);
 
-          <Route
-            path="/types"
-            render={(props) => (
-              <React.Fragment>
-                <TypeList types={this.state.types} />
-              </React.Fragment>
-            )}
-          />
-        </div>
-      </Router>
-    );
-  }
-}
+  return (
+    <Router>
+      <div className="App">
+        <Route
+          path="/"
+          render={() => (
+            <React.Fragment>
+              <h1>Reactomon</h1>
+              <Navbar pokemons={pokemons} types={types} />
+            </React.Fragment>
+          )}
+        />
+
+        {/* <Route
+          path="/pokemons"
+          render={() => (
+            <React.Fragment>
+              <PokemonList pokemons={pokemons} />
+            </React.Fragment>
+          )}
+        />
+
+        <Route
+          path="/types"
+          render={() => (
+            <React.Fragment>
+              <TypeList types={types} />
+            </React.Fragment>
+          )}
+        /> */}
+      </div>
+    </Router>
+  );
+};
 
 export default App;

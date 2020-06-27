@@ -1,12 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import SinglePokemon from "./SinglePokemon";
 
-export class PokemonList extends Component {
-  render() {
-    return this.props.pokemons.map((pokemon) => (
-      <SinglePokemon pokemon={pokemon} />
-    ));
-  }
-}
+const PokemonList = (props) => {
+  return props.pokemons.results.map((pokemon) => (
+    <SinglePokemon pokemon={pokemon} />
+  ));
+};
 
 export default PokemonList;
