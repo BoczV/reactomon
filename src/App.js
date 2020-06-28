@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from "react";
-
 import axios from "axios";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import styled from "styled-components";
 
-import "./App.css";
 import PokemonList from "./components/PokemonList";
 import TypeList from "./components/TypeList";
 import Navbar from "./components/Navbar";
 import PokemonDetail from "./components/PokemonDetail";
+import Greetings from "./components/Greetings";
+
+const HeaderH1 = styled.h1`
+  text-align: center;
+`;
+
+const PokeBallImg = styled.img`
+  width: 1%,
+  height: auto
+`;
 
 const App = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -22,8 +31,6 @@ const App = () => {
       .then((res) => setTypes(res.data));
   }, []);
 
-  console.log("Hey React!");
-
   return (
     <Router>
       <div className="App">
@@ -31,8 +38,17 @@ const App = () => {
           path="/"
           render={() => (
             <React.Fragment>
-              <h1>Reactomon</h1>
+              <HeaderH1>Reactomon</HeaderH1>
               <Navbar pokemons={pokemons} types={types} />
+            </React.Fragment>
+          )}
+        />
+
+        <Route
+          path="/about"
+          render={() => (
+            <React.Fragment>
+              <Greetings />
             </React.Fragment>
           )}
         />
