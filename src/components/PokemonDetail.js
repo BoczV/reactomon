@@ -14,7 +14,9 @@ const PokemonDetail = (props) => {
   useEffect(() => {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${props.id}`)
-      .then((res) => setPokemonName(capitalizeFirstLetter(res.data.name)));
+      .then((res) =>
+        setPokemonName(props.capitalizeFirstLetter(res.data.name))
+      );
 
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${props.id}`)
@@ -27,7 +29,7 @@ const PokemonDetail = (props) => {
     setImage(
       `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.id}.png`
     );
-  }, [props.id]);
+  }, [props, props.id]);
 
   const PokemonCard = styled.div`
     text-align: center;
@@ -41,10 +43,6 @@ const PokemonDetail = (props) => {
     border: solid yellow;
     border-radius: 10%;
   `;
-
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
 
   if (props.pokemons.length === 0) {
     return <h1>Loading...</h1>;

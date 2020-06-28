@@ -13,10 +13,9 @@ const HeaderH1 = styled.h1`
   text-align: center;
 `;
 
-const PokeBallImg = styled.img`
-  width: 1%,
-  height: auto
-`;
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 const App = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -57,7 +56,10 @@ const App = () => {
           path="/pokemons"
           render={() => (
             <React.Fragment>
-              <PokemonList pokemons={pokemons} />
+              <PokemonList
+                pokemons={pokemons}
+                capitalizeFirstLetter={capitalizeFirstLetter}
+              />
             </React.Fragment>
           )}
         />
@@ -66,7 +68,10 @@ const App = () => {
           path="/types"
           render={() => (
             <React.Fragment>
-              <TypeList types={types} />
+              <TypeList
+                types={types}
+                capitalizeFirstLetter={capitalizeFirstLetter}
+              />
             </React.Fragment>
           )}
         />
@@ -75,7 +80,11 @@ const App = () => {
           path="/pokemon/:id"
           render={(props) => (
             <React.Fragment>
-              <PokemonDetail pokemons={pokemons} id={props.match.params.id} />
+              <PokemonDetail
+                pokemons={pokemons}
+                id={props.match.params.id}
+                capitalizeFirstLetter={capitalizeFirstLetter}
+              />
             </React.Fragment>
           )}
         />

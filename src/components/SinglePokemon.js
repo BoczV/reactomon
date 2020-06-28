@@ -27,7 +27,7 @@ const SinglePokemon = (props) => {
         <Link href={routeString}>
           {pokemonId}
           {" ."}
-          {props.pokemon.name}
+          {props.capitalizeFirstLetter(props.pokemon.name)}
         </Link>
       </Container>
     </DivPokemon>

@@ -6,7 +6,10 @@ const PokemonList = (props) => {
     return <h1>Loading...</h1>;
   } else {
     return props.pokemons.results.map((pokemon) => (
-      <SinglePokemon pokemon={pokemon} />
+      <SinglePokemon
+        pokemon={pokemon}
+        capitalizeFirstLetter={props.capitalizeFirstLetter}
+      />
     ));
   }
 };
