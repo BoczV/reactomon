@@ -22,6 +22,8 @@ const App = () => {
       .then((res) => setTypes(res.data));
   }, []);
 
+  console.log("Hey React!");
+
   return (
     <Router>
       <div className="App">
