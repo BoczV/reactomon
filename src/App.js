@@ -19,10 +19,6 @@ const App = () => {
     axios
       .get("https://pokeapi.co/api/v2/type")
       .then((res) => setTypes(res.data));
-
-    // fetch("https://pokeapi.co/api/v2/pokemon").then((res) => setPokemons(res));
-
-    // fetch("https://pokeapi.co/api/v2/type").then((res) => setTypes(res));
   }, []);
 
   return (
