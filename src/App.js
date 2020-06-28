@@ -13,7 +13,6 @@ const App = () => {
   const [types, setTypes] = useState([]);
 
   useEffect(() => {
-    console.log("useEffect runs");
     axios
       .get("https://pokeapi.co/api/v2/pokemon")
       .then((res) => setPokemons(res.data));
@@ -39,7 +38,7 @@ const App = () => {
           )}
         />
 
-        {/* <Route
+        <Route
           path="/pokemons"
           render={() => (
             <React.Fragment>
@@ -55,7 +54,7 @@ const App = () => {
               <TypeList types={types} />
             </React.Fragment>
           )}
-        /> */}
+        />
       </div>
     </Router>
   );

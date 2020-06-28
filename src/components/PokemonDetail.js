@@ -1,20 +1,20 @@
-import React, { Component } from "react";
-import axios from "axios";
+// import React, { Component } from "react";
+// import axios from "axios";
 
-export class PokemonDetail extends Component {
-  state = {
-    details: [],
-  };
+// export class PokemonDetail extends Component {
+//   state = {
+//     details: [],
+//   };
 
-  componentDidMount() {
-    axios
-      .get(this.props.pokemon.url)
-      .then((res) => this.setState({ details: res.data }));
-  }
+//   componentDidMount() {
+//     axios
+//       .get(this.props.pokemon.url)
+//       .then((res) => this.setState({ details: res.data }));
+//   }
 
-  render() {
-    return <div></div>;
-  }
-}
+//   render() {
+//     return <div></div>;
+//   }
+// }
 
-export default PokemonDetail;
+// export default PokemonDetail;
