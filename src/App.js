@@ -7,6 +7,7 @@ import "./App.css";
 import PokemonList from "./components/PokemonList";
 import TypeList from "./components/TypeList";
 import Navbar from "./components/Navbar";
+import PokemonDetail from "./components/PokemonDetail";
 
 const App = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -48,6 +49,15 @@ const App = () => {
           render={() => (
             <React.Fragment>
               <TypeList types={types} />
+            </React.Fragment>
+          )}
+        />
+
+        <Route
+          path="/pokemon/:id"
+          render={(props) => (
+            <React.Fragment>
+              <PokemonDetail pokemons={pokemons} id={props.match.params.id} />
             </React.Fragment>
           )}
         />
