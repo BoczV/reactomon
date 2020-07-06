@@ -5,6 +5,8 @@ const Type = styled.p`
   text-decoration: underline;
 `;
 
+console.log("Hello!");
+
 const TypeList = (props) => {
   if (props.types.length === 0) {
     return <h1>Loading...</h1>;
