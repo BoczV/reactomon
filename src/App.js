@@ -9,17 +9,39 @@ import Navbar from "./components/Navbar";
 import PokemonDetail from "./components/PokemonDetail";
 import Greetings from "./components/Greetings";
 
-const HeaderH1 = styled.h1`
-  text-align: center;
-`;
-
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+const MainImg = styled.img`
+  width: 20%;
+  heigth: auto;
+  text-align: center;
+`;
+
+const PlayArea = styled.div`
+  position: relative;
+  text-align: right;
+`;
+
+const Buttons = styled.div`
+  display: inline-block;
+`;
+
+const MusicControl = styled.button`
+  background-color: yellowgreen;
+  color: white;
+  border: solid white;
+  border-radius: 40%
+  &:hover {
+    background-color: red;
+  }
+`;
+
 const App = () => {
   const [pokemons, setPokemons] = useState([]);
   const [types, setTypes] = useState([]);
+  const [audio, setAudio] = useState([]);
 
   useEffect(() => {
     axios
@@ -28,7 +50,17 @@ const App = () => {
     axios
       .get("https://pokeapi.co/api/v2/type")
       .then((res) => setTypes(res.data));
+
+    setAudio(new Audio("/Pokemon- TV Theme Song (Full) MUBlogger.mp3"));
   }, []);
+
+  const play = () => {
+    audio.play();
+  };
+
+  const stop = () => {
+    audio.pause();
+  };
 
   return (
     <Router>
@@ -37,7 +69,18 @@ const App = () => {
           path="/"
           render={() => (
             <React.Fragment>
-              <HeaderH1>Reactomon</HeaderH1>
+              <MainImg
+                src="/1200px-International_Pokémon_logo.svg.png"
+                alt=""
+              ></MainImg>
+              <PlayArea>
+                <h3>Pokemon's main theme.</h3>
+                <Buttons>
+                  <MusicControl onClick={play}>Play!</MusicControl>{" "}
+                  <MusicControl onClick={stop}>Stop!</MusicControl>
+                </Buttons>
+              </PlayArea>
+              <br />
               <Navbar pokemons={pokemons} types={types} />
             </React.Fragment>
           )}

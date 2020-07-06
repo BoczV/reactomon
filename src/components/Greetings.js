@@ -8,6 +8,7 @@ const HomePageBio = styled.div`
 const Greetings = () => {
   return (
     <HomePageBio>
+      <img src="" alt=""></img>
       <h2>Welcome in our PokePedia!</h2>
       <p>You will find the rarest pokemons here!</p>
     </HomePageBio>

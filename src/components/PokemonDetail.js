@@ -3,29 +3,30 @@ import axios from "axios";
 import styled from "styled-components";
 
 const PokemonDetail = (props) => {
+  // const [pokemon, setPokemon] = useState({
+  //   name: null,
+  //   height: null,
+  //   weight: null,
+  //   img: null,
+  // });
+
   const [pokemonName, setPokemonName] = useState([]);
 
-  const [height, setHeight] = useState([]);
+  const [height, setHeight] = useState(null);
 
-  const [image, setImage] = useState([]);
+  const [image, setImage] = useState("");
 
-  const [weight, setWeight] = useState([]);
+  const [weight, setWeight] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${props.id}`)
-      .then((res) =>
-        setPokemonName(props.capitalizeFirstLetter(res.data.name))
-      );
-
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${props.id}`)
-      .then((res) => setHeight(res.data.height));
-
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${props.id}`)
-      .then((res) => setWeight(res.data.weight));
-
+    axios.get(`https://pokeapi.co/api/v2/pokemon/${props.id}`).then((res) => {
+      // setPokemon({ name: res.data.name });
+      // setPokemon({ height: res.data.height });
+      // setPokemon({ weight: res.data.weight });
+      setPokemonName(props.capitalizeFirstLetter(res.data.name));
+      setHeight(res.data.height);
+      setWeight(res.data.weight);
+    });
     setImage(
       `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.id}.png`
     );
