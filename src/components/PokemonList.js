@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import SinglePokemon from "./SinglePokemon";
+import { PokemonContext } from "../contexts/PokemonContext";
 
 const PokemonList = (props) => {
-  if (props.pokemons.length === 0) {
+  const [pokemons] = useContext(PokemonContext);
+
+  if (pokemons.length === 0) {
     return <h1>Loading...</h1>;
   } else {
-    return props.pokemons.results.map((pokemon) => (
+    return pokemons.results.map((pokemon) => (
       <SinglePokemon
         pokemon={pokemon}
         capitalizeFirstLetter={props.capitalizeFirstLetter}

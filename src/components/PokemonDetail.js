@@ -1,14 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import { PokemonContext } from "../contexts/PokemonContext";
+
+const PokemonCard = styled.div`
+  text-align: center;
+  background-color: yellow;
+  border-radius: 10%;
+  display: inline-block;
+`;
+
+const PokemonImg = styled.div`
+  background-color: white;
+  border: solid yellow;
+  border-radius: 10%;
+`;
 
 const PokemonDetail = (props) => {
-  // const [pokemon, setPokemon] = useState({
-  //   name: null,
-  //   height: null,
-  //   weight: null,
-  //   img: null,
-  // });
+  const [pokemons] = useContext(PokemonContext);
 
   const [pokemonName, setPokemonName] = useState([]);
 
@@ -20,9 +29,6 @@ const PokemonDetail = (props) => {
 
   useEffect(() => {
     axios.get(`https://pokeapi.co/api/v2/pokemon/${props.id}`).then((res) => {
-      // setPokemon({ name: res.data.name });
-      // setPokemon({ height: res.data.height });
-      // setPokemon({ weight: res.data.weight });
       setPokemonName(props.capitalizeFirstLetter(res.data.name));
       setHeight(res.data.height);
       setWeight(res.data.weight);
@@ -32,20 +38,7 @@ const PokemonDetail = (props) => {
     );
   }, [props, props.id]);
 
-  const PokemonCard = styled.div`
-    text-align: center;
-    background-color: yellow;
-    border-radius: 10%;
-    display: inline-block;
-  `;
-
-  const PokemonImg = styled.div`
-    background-color: white;
-    border: solid yellow;
-    border-radius: 10%;
-  `;
-
-  if (props.pokemons.length === 0) {
+  if (pokemons.length === 0) {
     return <h1>Loading...</h1>;
   } else {
     return (

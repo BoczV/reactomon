@@ -2,19 +2,19 @@ import React from "react";
 import "../App.css";
 import styled from "styled-components";
 
-const Navbar = (props) => {
-  const Home = styled.a`
-    float: left;
-    border-right: 1px solid #bbb;
-    background-color: yellowgreen;
-    margin: 0 auto;
-    max-width: 1000px;
+const Home = styled.a`
+  float: left;
+  border-right: 1px solid #bbb;
+  background-color: yellowgreen;
+  margin: 0 auto;
+  max-width: 1000px;
 
-    width: auto;
-    position: absolute;
-    right: 0px;
-  `;
+  width: auto;
+  position: absolute;
+  right: 0px;
+`;
 
+const Navbar = () => {
   return (
     <div>
       <ul>

@@ -1,10 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import { NavbarThemeContextProvider } from "./theme/NavbarThemeContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <NavbarThemeContextProvider>
+      <App />
+    </NavbarThemeContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
